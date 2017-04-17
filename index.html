@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!--link rel="icon" href="../../favicon.ico"-->
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Wolfgang Kopp's website</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.readable.min.css" rel="stylesheet">
@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
+    <script src="js/handlebars-v4.0.5.js"></script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,42 +49,23 @@
             <li><a href="#contact">Teaching</a></li>
             <li><a href="#contact">Research interests</a></li>
             <li><a href="#contact">Publications</a></li>
-            <li><a href="#contact">Software</a></li>
+            <li><a href="#software">Software</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
 
-      <div class="starter-template">
-          <h1>Wolfgang Kopp</h1>
+    <div id="content"></div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; Wolfgang Kopp 2016-2017.</p>
       </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-
-          <img class="img-circle hidden-xs" src="img/foto_cropped.jpg" style="width:100%"/><br/>
-          <div class="row">
-            <h3>Contact</h3>
-          </div>
-
-              <div class="list-groups">
-                <a class="list-group-item" href="mailto:&#119;&#111;&#108;&#102;&#103;&#097;&#110;&#103;&#107;&#111;&#112;&#112;&#032;&#097;&#116;&#032;&#103;&#109;&#120;&#032;&#100;&#111;&#116;&#032;&#110;&#101;&#116;">Email</a>
-                <a class="list-group-item" href="#">LinkedIn</a>
-              </div>
-
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-8 col-lg-8">
-        <p>
-        This will become my personal homepage in a little bit.
-        </p>
-        </div>
-      </div>
-
-    </div><!-- /.container -->
-
-
+    </footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -94,5 +76,46 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script id="main-template" type="text/x-handlebars-template">
+      <div class="container lead">
+
+        <div class="starter-template">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+            <img class="img-circle hidden-xs" src="img/foto_cropped.jpg" style="width:100%"/><br/>
+            <div class="row">
+              <h3>Contact</h3>
+            </div>
+
+            <div class="list-groups">
+              <a class="list-group-item" href="mailto:&#119;&#111;&#108;&#102;&#103;&#097;&#110;&#103;&#107;&#111;&#112;&#112;&#032;&#097;&#116;&#032;&#103;&#109;&#120;&#032;&#100;&#111;&#116;&#032;&#110;&#101;&#116;">Email</a>
+              <a class="list-group-item" href="#">LinkedIn</a>
+            </div>
+
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-8 col-lg-8">
+            <p>
+              {{content}}
+            </p>
+          </div>
+        </div>
+
+
+      </div><!-- /.container -->
+    </script>
+    <script type="text/javascript">
+
+    var title = "Wolfgang Kopp"
+    var content = "Hello, this is my personal website. I am a PhD student in computational biology at the Max Planck Insitute for Molecular Genetics."
+
+    var template = document.getElementById("main-template").innerHTML;
+    console.log(template);
+    var compiled  = Handlebars.compile(template);
+    var htmlwithdata = compiled({title:title, content:content});
+    document.getElementById("content").innerHTML += htmlwithdata;
+    </script>
   </body>
 </html>
